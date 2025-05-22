@@ -9,7 +9,7 @@ from django.contrib import messages
 
 
 @login_required
-def get_profile(request):
+def profile(request):
     
     profile, created = Profile.objects.get_or_create(user=request.user)
     if request.method == 'POST' and 'profile_picture' in request.FILES:
@@ -31,7 +31,7 @@ def get_profile(request):
     return render(request, 'profile.html', {'profile': profile, 'form': form})
 
 # Sign up view
-def get_signup(request):
+def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         
@@ -70,7 +70,7 @@ def get_signup(request):
     return render(request, 'signup.html', {'form': form})
 
 # Login view
-def get_login_view(request):
+def login_view(request):
     
     alert_message = None  # Message to display in the alert
     
@@ -92,7 +92,7 @@ def get_login_view(request):
 
 # Home page view
 @login_required
-def get_home(request):
+def home(request):
     username = request.user.username #if request.user.is_authenticated else "Unknown User"   # Display username if authenticated; otherwise show "Unknown User"
     coffees = Coffee.objects.all()  # Display coffee items
     response = render(request, 'home.html', {'username': username, 'coffees': coffees})
@@ -100,7 +100,7 @@ def get_home(request):
 
 # Logout view
 @login_required
-def get_logout_view(request):
+def logout_view(request):
     logout(request)
     return redirect('login')  # Redirect to login page after logout
 
@@ -109,23 +109,23 @@ def about(request):
     return render(request, 'about.html')
 
 @login_required
-def get_contact(request):
+def contact(request):
     return render(request, 'contact.html')
 
 @login_required
-def get_gallery(request):
+def gallery(request):
     coffees = Coffee.objects.all()
     return render(request, 'gallery.html', {'coffees': coffees})
 
 @login_required
-def get_view_coffee(request, coffee_id):
+def view_coffee(request, coffee_id):
     
     # Fetch the coffee with the given ID
     coffee = get_object_or_404(Coffee, id=coffee_id)
     return render(request, 'view_coffee.html' , {'coffee': coffee})
 
 @login_required
-def get_add_to_cart(request, product_id):
+def add_to_cart(request, product_id):
     coffee = Coffee.objects.get(id=product_id)
     cart = request.session.get('cart', {})
     
@@ -138,7 +138,7 @@ def get_add_to_cart(request, product_id):
     return redirect('view_cart')
 
 @login_required
-def get_add_to_checkout(request, product_id):
+def add_to_checkout(request, product_id):
     coffee = Coffee.objects.get(id=product_id)
     cart = request.session.get('cart', {})
     
@@ -151,7 +151,7 @@ def get_add_to_checkout(request, product_id):
     return redirect('checkout1')
 
 @login_required
-def get_remove_from_cart(request, product_id):
+def remove_from_cart(request, product_id):
     cart = request.session.get('cart', {})
     
     if str(product_id) in cart:
@@ -163,7 +163,7 @@ def get_remove_from_cart(request, product_id):
     return redirect('view_cart')
 
 @login_required
-def get_view_cart(request):
+def view_cart(request):
     cart = request.session.get('cart', {})
     coffees = Coffee.objects.filter(id__in=cart.keys())
     cart_items = []
@@ -181,7 +181,7 @@ def get_view_cart(request):
     
     
 @login_required
-def get_checkout(request):
+def checkout(request):
     
     # Get cart details and calculate total cost
     cart = request.session.get('cart', {})
@@ -216,7 +216,7 @@ def get_checkout(request):
 
 
 @login_required
-def get_payment(request, order_id):
+def payment(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     if request.method == "POST":
         # Simulate payment processing
@@ -228,7 +228,7 @@ def get_payment(request, order_id):
     return render(request, 'payment.html', {'order': order})
 
 @login_required
-def get_checkout1(request):
+def checkout1(request):
     cart = request.session.get('cart', {})
     coffees = Coffee.objects.filter(id__in=cart.keys())
     total_cost = 0
