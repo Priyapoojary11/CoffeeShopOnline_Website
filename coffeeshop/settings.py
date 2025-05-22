@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'coffee.apps.CoffeeConfig',
+    'django_distill',
 ]
 
 MIDDLEWARE = [
