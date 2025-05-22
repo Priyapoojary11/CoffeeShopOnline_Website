@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 
 
-@login_required
+# @login_required
 def profile(request):
     
     profile, created = Profile.objects.get_or_create(user=request.user)
@@ -91,7 +91,7 @@ def login_view(request):
     return render(request, 'login.html', {'alert_message': alert_message})
 
 # Home page view
-@login_required
+# @login_required
 def home(request):
     username = request.user.username #if request.user.is_authenticated else "Unknown User"   # Display username if authenticated; otherwise show "Unknown User"
     coffees = Coffee.objects.all()  # Display coffee items
@@ -99,32 +99,32 @@ def home(request):
     return response
 
 # Logout view
-@login_required
+# @login_required
 def logout_view(request):
     logout(request)
     return redirect('login')  # Redirect to login page after logout
 
-@login_required
+# @login_required
 def about(request):
     return render(request, 'about.html')
 
-@login_required
+# @login_required
 def contact(request):
     return render(request, 'contact.html')
 
-@login_required
+# @login_required
 def gallery(request):
     coffees = Coffee.objects.all()
     return render(request, 'gallery.html', {'coffees': coffees})
 
-@login_required
+# @login_required
 def view_coffee(request, coffee_id):
     
     # Fetch the coffee with the given ID
     coffee = get_object_or_404(Coffee, id=coffee_id)
     return render(request, 'view_coffee.html' , {'coffee': coffee})
 
-@login_required
+# @login_required
 def add_to_cart(request, product_id):
     coffee = Coffee.objects.get(id=product_id)
     cart = request.session.get('cart', {})
@@ -137,7 +137,7 @@ def add_to_cart(request, product_id):
     request.session['cart'] = cart
     return redirect('view_cart')
 
-@login_required
+# @login_required
 def add_to_checkout(request, product_id):
     coffee = Coffee.objects.get(id=product_id)
     cart = request.session.get('cart', {})
@@ -150,7 +150,7 @@ def add_to_checkout(request, product_id):
     request.session['cart'] = cart
     return redirect('checkout1')
 
-@login_required
+# @login_required
 def remove_from_cart(request, product_id):
     cart = request.session.get('cart', {})
     
@@ -162,7 +162,7 @@ def remove_from_cart(request, product_id):
         request.session['cart'] = cart
     return redirect('view_cart')
 
-@login_required
+# @login_required
 def view_cart(request):
     cart = request.session.get('cart', {})
     coffees = Coffee.objects.filter(id__in=cart.keys())
@@ -180,7 +180,7 @@ def view_cart(request):
     return render(request, 'cart.html', {'cart_items': cart_items, 'total_cost': total_cost})
     
     
-@login_required
+# @login_required
 def checkout(request):
     
     # Get cart details and calculate total cost
@@ -215,7 +215,7 @@ def checkout(request):
     return render(request, 'checkout.html', {'cart_items': cart_items, 'total_cost': total_cost})
 
 
-@login_required
+# @login_required
 def payment(request, order_id):
     order = get_object_or_404(Order, id=order_id, user=request.user)
     if request.method == "POST":
@@ -227,7 +227,7 @@ def payment(request, order_id):
 
     return render(request, 'payment.html', {'order': order})
 
-@login_required
+# @login_required
 def checkout1(request):
     cart = request.session.get('cart', {})
     coffees = Coffee.objects.filter(id__in=cart.keys())
