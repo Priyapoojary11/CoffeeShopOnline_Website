@@ -1,14 +1,14 @@
 {% extends 'index.html' %}
 {% block content %}
-    {% if user.is_authenticated %}
+    <!-- {% if user.is_authenticated %} -->
     
     <center><h2>Welcome, {{ username }}!</h2></center>
-    {% endif %}
+    <!-- {% endif %} -->
     
     <div class="gallery">
         {% for coffee in coffees %}
             <div class="coffee-item">
-                <a href="/view_coffee' coffee.id/">
+                <a href="/'view_coffee' coffee.id/">
                 <img src="{{ coffee.image}}" alt="{{ coffee.name }}" width="260" height="300">
                 <h5 class="card-title">{{ coffee.name }}</h5><a>
             </div>  
