@@ -2,17 +2,17 @@
 {% block content %}
     <!-- {% if user.is_authenticated %} -->
     
-    <center><h2>Welcome, {{ username }}!</h2></center>
+    <center><h2>Welcome, User!</h2></center>
     <!-- {% endif %} -->
     
     <div class="gallery">
-        {% for coffee in coffees %}
+        <!-- {% for coffee in coffees %} -->
             <div class="coffee-item">
                 <a href="/'view_coffee' coffee.id/">
-                <img src="{{ coffee.image}}" alt="{{ coffee.name }}" width="260" height="300">
-                <h5 class="card-title">{{ coffee.name }}</h5><a>
+                <img src="static/media/latte.jpg" alt="Coffee latte" width="260" height="300">
+                <h5 class="card-title">Coffee latte</h5><a>
             </div>  
-        {% endfor %}
+        <!-- {% endfor %} -->
     </div>
 {% endblock %}
 
