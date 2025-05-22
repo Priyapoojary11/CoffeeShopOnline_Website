@@ -2,19 +2,64 @@
 <!-- {% block content %} -->
     <!-- {% if user.is_authenticated %} -->
     
-    <center><h2>Welcome, User!</h2></center>
+    <!-- <center><h2>Welcome, User!</h2></center> -->
     <!-- {% endif %} -->
     
-    <div class="gallery">
+    <!-- <div class="gallery"> -->
         <!-- {% for coffee in coffees %} -->
-            <div class="coffee-item">
+            <!-- <div class="coffee-item">
                 <a href="/'view_coffee' coffee.id/">
                 <img src="static/media/latte.jpg" alt="Coffee latte" width="260" height="300">
                 <h5 class="card-title">Coffee latte</h5><a>
-            </div>  
+            </div>   -->
         <!-- {% endfor %} -->
-    </div>
+    <!-- </div> -->
 <!-- {% endblock %} -->
-<footer>
+<!-- <footer>
+        <p>&copy; 2024 Coffee Shop. All rights reserved.</p>
+    </footer> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Welcome - Coffee Shop</title>
+    <link rel="stylesheet" href="static/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="primary-body">
+    <header>
+        <h1>Coffee Shop</h1><br>
+        <nav>
+        <a href="home.html"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="login.html" class="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="signup.html" class="button"><i class="fas fa-user-plus"></i> Sign Up</a>
+        </nav>
+    </header>
+
+    <main>
+        <center><h2>Welcome, User!</h2></center>
+
+        <div class="gallery">
+        <div class="coffee-item">
+            <a href="view_coffee.html">
+            <img src="static/media/latte.jpg" alt="Coffee latte" width="260" height="300">
+            <h5 class="card-title">Coffee latte</h5>
+            </a>
+        </div>
+        <!-- Add more coffee items here if needed -->
+        </div>
+    </main>
+
+    <footer>
         <p>&copy; 2024 Coffee Shop. All rights reserved.</p>
     </footer>
+</body>
+</html>
+
