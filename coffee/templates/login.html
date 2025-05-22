@@ -3,7 +3,7 @@
 <head>
     <title>Login</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <link rel="stylesheet" href="static/styles.css">
     <!-- href="{% static 'styles.css' %}"> -->
 </head>
 
@@ -33,7 +33,7 @@
             </form>
 
 
-            <br><p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+            <br><p>Don't have an account? <a href="/signup/">Sign up here</a></p>
         </div>
     </div> 
     <script>

@@ -20,14 +20,14 @@
                 <input type="checkbox" id="toggle-{{ forloop.counter }}" class="toggle">
                 <p class="description">{{ coffee.description }}</p>
                 <label for="toggle-{{ forloop.counter }}"></label><br>
-                <button><a href="{% url 'add_to_cart' coffee.id %}"><i class="fas fa-shopping-cart"></i> Add to cart</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button><a href="{% url 'add_to_checkout' coffee.id %}"><i class="fas fa-credit-card"></i> Buy now</a></button> 
+                <button><a href="/add_to_cart' coffee.id/"><i class="fas fa-shopping-cart"></i> Add to cart</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button><a href="/add_to_checkout' coffee.id/"><i class="fas fa-credit-card"></i> Buy now</a></button> 
             </div>
         </section>
     </main>
         
 <footer>
-    <a style="color: white" href="{% url 'home' %}"><i class="fas fa-shopping-bag"></i> Continue Shopping</a><br><br>
+    <a style="color: white" href="/home/"><i class="fas fa-shopping-bag"></i> Continue Shopping</a><br><br>
     <p>&copy; 2024 Coffee Shop. All rights reserved.</p>
 </footer>
 </body>

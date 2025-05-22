@@ -13,16 +13,16 @@
         <h1>Coffee Shop</h1><br>
         <nav >
             <a href="/home/"><i class="fas fa-home"></i> Home</a>
-            <a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About</a>
-            <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="/about/"><i class="fas fa-info-circle"></i> About</a>
+            <a href="/contact/"><i class="fas fa-envelope"></i> Contact</a>
             <a href="/gallery/"><i class="fas fa-image"></i> Gallery</a> 
             <a href="/view_cart/"> <i class="fas fa-shopping-cart"></i> Cart</a> {% comment %} <i class="fas fa-eye"></i> {% endcomment %}
             <a href="/profile/"><i class="fas fa-user"></i> Profile</a>
                 {% if user.is_authenticated %}
-                    <a class="button" href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a class="button" href="/login/"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 {% else %}
-                    <a class="button" href="{% url 'login' %}">Login</a>
-                    <a class="button" href="{% url 'signup' %}">Sign Up</a>
+                    <a class="button" href="/login/">Login</a>
+                    <a class="button" href="/signup/">Sign Up</a>
                 {% endif %}
         </nav> 
     </header>
