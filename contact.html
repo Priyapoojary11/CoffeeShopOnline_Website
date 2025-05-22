@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+<!-- {% extends 'index.html' %}
 {% block content %}
 <div class="secondary-body" style="background-color: #ccc">
     <div class="form-container">
@@ -44,4 +44,96 @@
         </div>
     </div>
 </div> 
-{% endblock %}
+{% endblock %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="static/css/styles.css" />
+    <style>
+        .form-container {
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        max-width: 500px;
+        }
+        .form-group {
+        margin-bottom: 15px;
+        }
+        .form-group input, .form-group select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        }
+        .submit-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        cursor: pointer;
+        }
+        .submit-btn:hover {
+        background-color: #45a049;
+        }
+        .secondary-body {
+        background-color: #ccc;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="secondary-body">
+        <div class="form-container">
+        <h2 style="text-align: center">Contact Us</h2>
+        <div class="form-content">
+            <form action="#" method="post" onsubmit="return myFunction()">
+            <p style="text-align: center">Get in touch with us for any inquiries.</p><br>
+
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" id="username" name="username" placeholder="Your user name.." required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email ID</label>
+                <input type="email" id="email" name="email" placeholder="Your email id.." required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" id="phone" name="phone" placeholder="Your phone no.." required>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                <option value="">Select your country..</option>
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="india">India</option>
+                <option value="usa">USA</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+            </form>
+
+            <script>
+            function myFunction() {
+                alert("The form was submitted successfully");
+                return false; // Prevents actual form submission for demo purposes
+            }
+            </script>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

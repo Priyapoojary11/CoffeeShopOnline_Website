@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+<!-- {% extends 'index.html' %}
 
 {% block content %}
     <div class="gallery">
@@ -6,4 +6,41 @@
                 <img src="{{ coffee.image}}" width="320" height="300">
         {% endfor %}
     </div>
-{% endblock %}
+{% endblock %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Coffee Gallery</title>
+    <link rel="stylesheet" href="static/css/styles.css" />
+    <style>
+        .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding: 40px;
+        background-color: #f5f5f5;
+        }
+        .gallery img {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+        }
+        .gallery img:hover {
+        transform: scale(1.05);
+        }
+    </style>
+    </head>
+    <body>
+    <div class="gallery">
+        <img src="static\media\latte.jpg" width="320" height="300" alt="Coffee 1">
+        <img src="static/media/blackcoffee.jpg" width="320" height="300" alt="Coffee 2">
+        <img src="static/media/espresso.jpg" width="320" height="300" alt="Coffee 3">
+        <img src="static/media/icecoffee.jpg" width="320" height="300" alt="Coffee 4">
+        <!-- Add or duplicate more <img> tags if needed -->
+    </div>
+</body>
+</html>

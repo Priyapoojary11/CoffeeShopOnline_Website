@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
         body { font-family: Arial, sans-serif; margin: 20px; background-color:rgb(184, 196, 212);}
         
     </style>
-    <!-- {% load static %} -->
+    {% load static %} 
     <link rel="stylesheet" href="static/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -17,28 +17,28 @@
     <br><a href="home.html" style="color: black"><i class="fas fa-home"></i> Home</a>
     <div class="profile-container">
 
-        <!-- Profile Photo -->
-        <div class="profile img">
+        <-- Profile Photo -->
+        <!-- <div class="profile img">
             <img src="default.jpg" id="profile-photo" alt="Profile Photo">
             <br>
             <button class="edit-btn" onclick="document.getElementById('file-input').click()">Change Photo</button>
             <button class="delete-btn" onclick="deletePhoto()">Delete Photo</button>
             <input type="file" id="file-input" style="display:none" onchange="updatePhoto(event)">
-        </div>
+        </div> -->
 
         <!-- Profile Details -->
-        <div id="profile-details">
+        <!-- <div id="profile-details">
             <h3 id="username-view">Username: {{ user.username }}</h3><br>
             <p id="address-view">Address: {{ profile.address }}</p><br>
             <p id="mobile-view">Contact Number: {{ profile.mobile_number }}</p><br>
             <p id="email-view">Email: {{ profile.email }}</p>
-        </div>
+        </div> -->
 
         <!-- Edit/Add Buttons -->
-        <button class="edit-btn" onclick="editDetails()">Edit Profile</button>
+        <!-- <button class="edit-btn" onclick="editDetails()">Edit Profile</button> -->
 
         <!-- Form to Edit/Add Details -->
-        <div id="form-section" class="form-field"> 
+        <!-- <div id="form-section" class="form-field"> 
             <form action="#" method="post">
             {% csrf_token %}
 
@@ -133,6 +133,128 @@
                 };
                 reader.readAsDataURL(file);
             }
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="static/css/styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: rgb(184, 196, 212);
+        }
+    </style>
+</head>
+
+<body><br/>
+    <a href="home.html" style="color: black"><i class="fas fa-home"></i> Home</a>
+
+    <div class="profile-container">
+        <!-- Profile Photo -->
+        <div class="profile-img">
+        <img src="profile_pics\womens.jpg" id="profile-photo" alt="Profile Photo" width="120"/><br/>
+        <button class="edit-btn" onclick="document.getElementById('file-input').click()">Change Photo</button>
+        <button class="delete-btn" onclick="deletePhoto()">Delete Photo</button>
+        <input type="file" id="file-input" style="display:none" onchange="updatePhoto(event)"/>
+        </div>
+
+    <!-- Profile Details -->
+    <div id="profile-details">
+        <h3 id="username-view">Username: </h3><br/>
+        <p id="address-view">Address: </p><br/>
+        <p id="mobile-view">Contact Number: </p><br/>
+        <p id="email-view">Email: </p>
+    </div>
+
+    <!-- Edit/Add Buttons -->
+    <button class="edit-btn" onclick="editDetails()">Edit Profile</button>
+
+    <!-- Form to Edit/Add Details -->
+    <div id="form-section" class="form-field" style="display:none;">
+        <form onsubmit="saveDetails(); return false;">
+            <div class="form-group">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username"/>
+            </div><br/>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter Address"/>
+            </div><br/>
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" name="mobile" placeholder="Enter Mobile Number"/>
+            </div><br/>
+            <div class="form-group">
+                <label for="email">Email ID:</label>
+                <input type="email" id="email" name="email" placeholder="Enter Email"/>
+            </div><br/>
+            <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+        document.getElementById('username-view').innerText = 'Username: ' + (localStorage.getItem('username') || 'User3');
+        document.getElementById('address-view').innerText = 'Address: ' + (localStorage.getItem('address') || 'Not Provided');
+        document.getElementById('mobile-view').innerText = 'Contact Number: ' + (localStorage.getItem('mobile') || 'Not Provided');
+        document.getElementById('email-view').innerText = 'Email: ' + (localStorage.getItem('email') || 'Not Provided');
+        document.getElementById('profile-photo').src = localStorage.getItem('photo') || 'static/images/default.jpg';
+        };
+
+    function editDetails() {
+        document.getElementById('form-section').style.display = 'block';
+        document.getElementById('username').value = localStorage.getItem('username') || '';
+        document.getElementById('address').value = localStorage.getItem('address') || '';
+        document.getElementById('mobile').value = localStorage.getItem('mobile') || '';
+        document.getElementById('email').value = localStorage.getItem('email') || '';
+        }
+
+    function saveDetails() {
+        const username = document.getElementById('username').value.trim();
+        const address = document.getElementById('address').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        localStorage.setItem('username', username || 'User3');
+        localStorage.setItem('address', address || 'Not Provided');
+        localStorage.setItem('mobile', mobile || 'Not Provided');
+        localStorage.setItem('email', email || 'Not Provided');
+
+        document.getElementById('username-view').innerText = 'Username: ' + (username || 'User3');
+        document.getElementById('address-view').innerText = 'Address: ' + (address || 'Not Provided');
+        document.getElementById('mobile-view').innerText = 'Contact Number: ' + (mobile || 'Not Provided');
+        document.getElementById('email-view').innerText = 'Email: ' + (email || 'Not Provided');
+
+        document.getElementById('form-section').style.display = 'none';
+        alert('Profile Updated Successfully!');
+    }
+
+    function deletePhoto() {
+        localStorage.removeItem('photo');
+        document.getElementById('profile-photo').src = 'static/images/default.jpg';
+        alert('Photo Removed!');
+    }
+
+    function updatePhoto(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+            document.getElementById('profile-photo').src = e.target.result;
+            localStorage.setItem('photo', e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
         }
     </script>
 </body>
