@@ -35,11 +35,11 @@
             <br><p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
         </div>
     </div> 
-    {% if alert_message %} 
     <script>
-            alert("{{ alert_message }}");
+        {% if alert_message %}
+        alert("{{ alert_message }}");
+        {% endif %}
     </script>
-    {% endif %}
 
 </body>
 </html>
