@@ -3,8 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path('', views.login_view, name='root'),  # Redirect root URL to login
-    path('', views.home, name='root'),
+    path('', views.home, name='root'), # Redirect root URL to login
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
