@@ -14,14 +14,14 @@
         <center><h1>Explore Our Coffee Selection</h1></center><br><br>
         <section>
             <div class="product-card" style="background-color: white"> 
-                <img src="{{ coffee.image}}" alt="{{ coffee.name }}">
-                <h5 class="card-title">{{ coffee.name }}</h5>
-                <p>Price: ₹ {{coffee.price}}</p>
+                <img src="static/media/latte.jpg" alt="Coffee latte">
+                <h5 class="card-title">Coffee latte</h5>
+                <p>Price: ₹ 15</p>
                 <input type="checkbox" id="toggle-{{ forloop.counter }}" class="toggle">
-                <p class="description">{{ coffee.description }}</p>
+                <p class="description">A latte, or caffè latte, is a coffee drink made with espresso and steamed milk. It's known for its creamy, smooth texture and subtle coffee flavor. A latte typically consists of one or two shots of espresso, a larger portion of steamed milk, and a thin layer of milk foam on top.</p>
                 <label for="toggle-{{ forloop.counter }}"></label><br>
-                <button><a href="/add_to_cart' coffee.id/"><i class="fas fa-shopping-cart"></i> Add to cart</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button><a href="/add_to_checkout' coffee.id/"><i class="fas fa-credit-card"></i> Buy now</a></button> 
+                <button><a href="/'add_to_cart' coffee.id/"><i class="fas fa-shopping-cart"></i> Add to cart</a></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button><a href="/'add_to_checkout' coffee.id/"><i class="fas fa-credit-card"></i> Buy now</a></button> 
             </div>
         </section>
     </main>
