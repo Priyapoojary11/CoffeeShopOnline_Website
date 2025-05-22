@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
-    {% comment %} <style>
+    <style>
         body { font-family: Arial, sans-serif; margin: 20px; background-color:rgb(184, 196, 212);}
         
-    </style> {% endcomment %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </style>
+    <!-- {% load static %} -->
+    <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body style= "background-color:rgb(184, 196, 212)">
-    <br><a href="{% url 'home' %}" style="color: black"><i class="fas fa-home"></i> Home</a>
+    <br><a href="home.html" style="color: black"><i class="fas fa-home"></i> Home</a>
     <div class="profile-container">
 
         <!-- Profile Photo -->

@@ -12,12 +12,12 @@
     <header>
         <h1>Coffee Shop</h1><br>
         <nav >
-            <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+            <a href="home.html"><i class="fas fa-home"></i> Home</a>
             <a href="{% url 'about' %}"><i class="fas fa-info-circle"></i> About</a>
             <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="{% url 'gallery' %}"><i class="fas fa-image"></i> Gallery</a> 
-            <a href="{% url 'view_cart' %}"> <i class="fas fa-shopping-cart"></i> Cart</a> {% comment %} <i class="fas fa-eye"></i> {% endcomment %}
-            <a href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
+            <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a> 
+            <a href="view_cart"> <i class="fas fa-shopping-cart"></i> Cart</a> {% comment %} <i class="fas fa-eye"></i> {% endcomment %}
+            <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
                 {% if user.is_authenticated %}
                     <a class="button" href="{% url 'login' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 {% else %}
