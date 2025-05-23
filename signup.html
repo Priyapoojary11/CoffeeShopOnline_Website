@@ -2,7 +2,6 @@
 <html>
 <head>
     <title>Signup</title>
-    {% load static %}
     <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body class="secondary-body">
@@ -10,8 +9,7 @@
     <div class="form-container">
         <div class="form-content"><br><br>
             <h2 style="text-align: center">Sign Up</h2>
-                <form action="/signup/" method="post">
-                {% csrf_token %}
+                <form action="signup.html" method="post">
                 <div class="form-group">
                     <br><label-secondary for="username">User Name</label-secondary>
                     <input type="text" id="username" name="username" placeholder="Enter your username" required>
@@ -57,7 +55,7 @@
                 <br><button type="submit" class="submit-btn">Sign Up</button>
             </form>
 
-            {% if form_errors %}
+            <!-- {% if form_errors %}
                 <div class="alert alert-danger" style="color: red;">
                     <ul>
                         {% for field, errors in form_errors.items %}
@@ -65,10 +63,10 @@
                         {% endfor %}
                     </ul>
                 </div>
-            {% endif %}
+            {% endif %} -->
 
 
-            <br><p>Already have an account? <a href="/login/">Log in here</a></p>
+            <br><p>Already have an account? <a href="login.html">Log in here</a></p>
         </div>
     </div> 
     <script>

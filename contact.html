@@ -41,63 +41,67 @@
         }
     </style> -->
     
-        <h1>Coffee Shop</h1><br>
-        <nav>
-        <a href="home.html"><i class="fas fa-home"></i> Home</a>
-        <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-        <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-        <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
-        <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
-        <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
-        <a href="login.html" class="button"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="signup.html" class="button"><i class="fas fa-user-plus"></i> Sign Up</a>
-        </nav>
 
 </head>
 <body>
-    <div class="secondary-body">
-        <div class="form-container">
-        <h2 style="text-align: center">Contact Us</h2>
-        <div class="form-content">
-            <form action="#" method="post" onsubmit="return myFunction()">
-            <p style="text-align: center">Get in touch with us for any inquiries.</p><br>
-
-            <div class="form-group">
-                <label for="username">User Name</label>
-                <input type="text" id="username" name="username" placeholder="Your user name.." required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email ID</label>
-                <input type="email" id="email" name="email" placeholder="Your email id.." required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Phone No</label>
-                <input type="text" id="phone" name="phone" placeholder="Your phone no.." required>
-            </div>
-
-            <div class="form-group">
-                <label for="country">Country</label>
-                <select id="country" name="country" required>
-                <option value="">Select your country..</option>
-                <option value="australia">Australia</option>
-                <option value="canada">Canada</option>
-                <option value="india">India</option>
-                <option value="usa">USA</option>
-                </select>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-            </form>
-
-            <script>
-            function myFunction() {
-                alert("The form was submitted successfully");
-                return false; // Prevents actual form submission for demo purposes
-            }
-            </script>
+    <header>
+        <div class="primary-body">
+            <h1>Coffee Shop</h1><br>
+            <nav>
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                <a href="login.html" class="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="signup.html" class="button"><i class="fas fa-user-plus"></i> Sign Up</a>
+            </nav>
         </div>
+    </header>
+    <div class="secondary-body" style="background-color: #ccc">
+        <div class="form-container">
+            <h2 style="text-align: center">Contact Us</h2>
+            <div class="form-content">
+                <form action="#" method="post" onsubmit="return myFunction()">
+                    <p style="text-align: center">Get in touch with us for any inquiries.</p><br>
+
+                    <div class="form-group">
+                        <label-secondary for="username">User Name</label-secondary>
+                        <input type="text" id="username" name="username" placeholder="Your user name.." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label-secondary for="email">Email ID</label-secondary>
+                        <input type="email" id="email" name="email" placeholder="Your email id.." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label-secondary for="phone">Phone No</label-secondary>
+                        <input type="text" id="phone" name="phone" placeholder="Your phone no.." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label-secondary for="country">Country</label-secondary>
+                        <select id="country" name="country" placeholder="Select your country.." required>
+                            <option value="" placeholder="Select your country.."></option>
+                            <option value="australia">Australia</option>
+                            <option value="canada">Canada</option>
+                            <option value="india">India</option>
+                            <option value="usa">USA</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+
+                <script>
+                    function myFunction() {
+                        alert("The form was submitted successfully");
+                        return false; // Prevents actual form submission for demo purposes
+                    }
+                </script>
+            </div>
         </div>
     </div>
 </body>

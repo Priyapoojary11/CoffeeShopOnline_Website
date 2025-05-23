@@ -2,9 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    {% load static %}
     <link rel="stylesheet" href="static/css/styles.css">
-    <!-- href="{% static 'styles.css' %}"> -->
 </head>
 
 <body class="secondary-body">
@@ -12,8 +10,7 @@
         <div class="form-content">
             <h2 style="text-align: center">Login</h2>
 
-            <form method="POST">
-                {% csrf_token %}
+            <form action="#" method="post" onsubmit="return myFunction();">
                 
                 <!-- Username Field -->
                 <div class="form-group">
@@ -32,14 +29,14 @@
                 <button type="submit" class="submit-btn">Log In</button><br>
             </form>
 
-
             <br><p>Don't have an account? <a href="/signup/">Sign up here</a></p>
         </div>
     </div> 
     <script>
-        // {% if alert_message %}
-        alert("{{ alert_message }}");
-        // {% endif %}
+        function myFunction() {
+                alert("Login successfully done. Click OK to proceed!");
+                return true;
+            }
     </script>
 
 </body>
