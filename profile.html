@@ -6,20 +6,15 @@
     <title>Profile Page</title>
     <link rel="stylesheet" href="static/css/styles.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <!-- <style>
-        body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-        background-color: rgb(184, 196, 212);
-        }
-    </style> -->
 </head>
 
 <body style= "background-color:rgb(184, 196, 212)">
-    <br><a href="home.html" style="color: black"><i class="fas fa-home"></i> Home</a><br><br>
-    <center><h2>Profile Page</h2><br>
+    <br><br><a href="home.html" style="color: black"><i class="fas fa-home">&nbsp;</i> Home</a><br><br><br>
+    
 
     <div class="profile-container">
+        <center><h2>Profile Page</h2><br>
+            
         <!-- Profile Photo -->
         <div class="profile-img">
             <img src="profile_pics\womens.jpg" id="profile-photo" alt="Profile Photo" width="120"/><br/>
@@ -40,21 +35,22 @@
         <button class="edit-btn" onclick="editDetails()">Edit Profile</button>
 
         <!-- Form to Edit/Add Details -->
-        <div id="form-section" class="form-field" style="display:none;">
+        <div id="form-section" class="form-field" style="display:inline;">
             <form onsubmit="saveDetails(); return false;">
-                <div class="form-group">
+
+                <div class="form-group" style="display: inline-block; align-items: center; margin-bottom: 10px;">
                     <label-secondary for="username">User Name:</label-secondary>
                     <input type="text" id="username" name="username" placeholder="Enter Username"/>
                 </div><br/>
-                <div class="form-group">
+                <div class="form-group" style="display: inline-block; align-items: center; margin-bottom: 10px;">
                     <label-secondary for="address">Address:</label-secondary>
                     <input type="text" id="address" name="address" placeholder="Enter Address"/>
                 </div><br/>
-                <div class="form-group">
+                <div class="form-group" style="display: inline-block; align-items: center; margin-bottom: 10px;">
                     <label-secondary for="mobile">Mobile Number:</label-secondary>
                     <input type="text" id="mobile" name="mobile" placeholder="Enter Mobile Number"/>
                 </div><br/>
-                <div class="form-group">
+                <div class="form-group" style="display: inline-block; align-items: center; margin-bottom: 10px;">
                     <label-secondary for="email">Email ID:</label-secondary>
                     <input type="email" id="email" name="email" placeholder="Enter Email"/>
                 </div><br/>
@@ -65,11 +61,11 @@
 
         <script>
             window.onload = function () {
-            document.getElementById('username-view').innerText = 'Username: ' + (localStorage.getItem('username') || 'User3');
-            document.getElementById('address-view').innerText = 'Address: ' + (localStorage.getItem('address') || 'Not Provided');
-            document.getElementById('mobile-view').innerText = 'Contact Number: ' + (localStorage.getItem('mobile') || 'Not Provided');
-            document.getElementById('email-view').innerText = 'Email: ' + (localStorage.getItem('email') || 'Not Provided');
-            document.getElementById('profile-photo').src = localStorage.getItem('photo') || 'static/images/default.jpg';
+            document.getElementById('username-view').innerText = 'Username: ' + (localStorage.getItem('username') || 'User1');
+            document.getElementById('address-view').innerText = 'Address: ' + (localStorage.getItem('address') || '#12-4 Sri Devi, Mangalore');
+            document.getElementById('mobile-view').innerText = 'Contact Number: ' + (localStorage.getItem('mobile') || '98798746537');
+            document.getElementById('email-view').innerText = 'Email: ' + (localStorage.getItem('email') || 'user1@gmail.com');
+            document.getElementById('profile-photo').src = localStorage.getItem('photo') || 'profile_pics\womens.jpg';
             };
 
         function editDetails() {
@@ -86,15 +82,15 @@
             const mobile = document.getElementById('mobile').value.trim();
             const email = document.getElementById('email').value.trim();
 
-            localStorage.setItem('username', username || 'User3');
-            localStorage.setItem('address', address || 'Not Provided');
-            localStorage.setItem('mobile', mobile || 'Not Provided');
-            localStorage.setItem('email', email || 'Not Provided');
+            localStorage.setItem('username', username || 'User1');
+            localStorage.setItem('address', address || '#12-4 Sri Devi, Mangalore');
+            localStorage.setItem('mobile', mobile || '98798746537');
+            localStorage.setItem('email', email || 'user1@gmail.com');
 
-            document.getElementById('username-view').innerText = 'Username: ' + (username || 'User3');
-            document.getElementById('address-view').innerText = 'Address: ' + (address || 'Not Provided');
-            document.getElementById('mobile-view').innerText = 'Contact Number: ' + (mobile || 'Not Provided');
-            document.getElementById('email-view').innerText = 'Email: ' + (email || 'Not Provided');
+            document.getElementById('username-view').innerText = 'Username: ' + (username || 'User1');
+            document.getElementById('address-view').innerText = 'Address: ' + (address || '#12-4 Sri Devi, Mangalore');
+            document.getElementById('mobile-view').innerText = 'Contact Number: ' + (mobile || '98798746537');
+            document.getElementById('email-view').innerText = 'Email: ' + (email || 'user1@gmail.com');
 
             document.getElementById('form-section').style.display = 'none';
             alert('Profile Updated Successfully!');
@@ -102,7 +98,7 @@
 
         function deletePhoto() {
             localStorage.removeItem('photo');
-            document.getElementById('profile-photo').src = 'static/images/default.jpg';
+            document.getElementById('profile-photo').src = 'profile_pics\womens.jpg';
             alert('Photo Removed!');
         }
 
