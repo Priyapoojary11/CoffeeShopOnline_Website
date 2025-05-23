@@ -68,8 +68,7 @@
     <title>My Coffee Orders</title>
     <link rel="stylesheet" href="static/css/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <style>
-        /* Just a tiny style tweak for layout */
+    <!-- <style>
         .item {
             display: flex;
             align-items: center;
@@ -82,14 +81,20 @@
         .item .details {
             flex-grow: 1;
         }
-        .item button.remove-btn {
+        .item button.remove-btn, .item button.buy-now-btn {
             background: none;
             border: none;
-            color: red;
             cursor: pointer;
             font-size: 14px;
+            margin-left: 10px;
         }
-    </style>
+        .remove-btn {
+            color: red;
+        }
+        .buy-now-btn {
+            color: green;
+        }
+    </style> -->
 </head>
 <body class="primary-body">
     <header>
@@ -105,26 +110,28 @@
 
             <!-- Cart Items -->
             <div class="items-list">
-                <div class="item" data-price="240">
+                <div class="item" data-id="cappuccino" data-price="120" data-quantity="2" data-name="Cappuccino">
                     <img src="static/media/cappuccino.jpg" alt="Cappuccino" />
                     <div class="details">
                         <div class="title">Cappuccino</div>
-                        <div class="info">Quantity: 2</div>
-                        <div class="info">Price: ₹ 120</div>
-                        <div class="info">Total: ₹ 240</div>
+                        <div class="info quantity">Quantity: 2</div>
+                        <div class="info price">Price: ₹ 120</div>
+                        <div class="info total">Total: ₹ 240</div>
                     </div>
-                    <button class="remove-btn" title="Remove this item"><i class="fas fa-trash-alt"></i> Remove</button>
+                    <button class="remove-btn" title="Remove one quantity"><i class="fas fa-trash-alt"></i> Remove One</button>
+                    <button class="buy-now-btn" title="Buy this item now"><i class="fas fa-credit-card"></i> Buy this now</button>
                 </div>
 
-                <div class="item" data-price="150">
+                <div class="item" data-id="espresso" data-price="150" data-quantity="1" data-name="Espresso">
                     <img src="static/media/espresso.jpg" alt="Espresso" />
                     <div class="details">
                         <div class="title">Espresso</div>
-                        <div class="info">Quantity: 1</div>
-                        <div class="info">Price: ₹ 150</div>
-                        <div class="info">Total: ₹ 150</div>
+                        <div class="info quantity">Quantity: 1</div>
+                        <div class="info price">Price: ₹ 150</div>
+                        <div class="info total">Total: ₹ 150</div>
                     </div>
-                    <button class="remove-btn" title="Remove this item"><i class="fas fa-trash-alt"></i> Remove</button>
+                    <button class="remove-btn" title="Remove one quantity"><i class="fas fa-trash-alt"></i> Remove One</button>
+                    <button class="buy-now-btn" title="Buy this item now"><i class="fas fa-credit-card"></i> Buy this now</button>
                 </div>
             </div>
 
@@ -135,11 +142,6 @@
             <div class="continue">
                 <button><a style="color: green" href="checkout.html"><i class="fas fa-check-circle"></i> Proceed to Checkout</a></button>
             </div>
-
-            <!-- Buy Now Button -->
-            <form method="POST" onsubmit="alert('Simulated purchase!'); return false;">
-                <button type="submit" style="color: green"><i class="fas fa-credit-card"></i> Buy this now</button>
-            </form>
 
             <!-- Empty Cart Message -->
             <div class="empty-cart" style="margin-top: 20px; display: none;">
@@ -159,14 +161,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalAmountEl = document.getElementById("total-amount");
     const emptyCartMsg = document.querySelector(".empty-cart");
     const continueBtn = document.querySelector(".continue");
-    const buyNowForm = document.querySelector("form");
 
     function updateTotal() {
         let total = 0;
         const items = itemsList.querySelectorAll(".item");
         items.forEach(item => {
             const price = parseInt(item.getAttribute("data-price"), 10);
-            total += price;
+            const quantity = parseInt(item.getAttribute("data-quantity"), 10);
+            total += price * quantity;
         });
 
         totalAmountEl.textContent = `Total : ₹ ${total}`;
@@ -174,28 +176,64 @@ document.addEventListener("DOMContentLoaded", function () {
         if (total === 0) {
             emptyCartMsg.style.display = "block";
             continueBtn.style.display = "none";
-            buyNowForm.style.display = "none";
             totalAmountEl.style.display = "none";
         } else {
             emptyCartMsg.style.display = "none";
             continueBtn.style.display = "block";
-            buyNowForm.style.display = "block";
             totalAmountEl.style.display = "block";
         }
     }
 
-    // Attach remove listeners to each Remove button
+    // Update item total and quantity display after quantity change
+    function updateItemDisplay(item) {
+        const quantity = parseInt(item.getAttribute("data-quantity"), 10);
+        const price = parseInt(item.getAttribute("data-price"), 10);
+
+        // Update quantity text
+        const quantityEl = item.querySelector(".quantity");
+        quantityEl.textContent = `Quantity: ${quantity}`;
+
+        // Update total price text
+        const totalEl = item.querySelector(".total");
+        totalEl.textContent = `Total: ₹ ${price * quantity}`;
+    }
+
     itemsList.addEventListener("click", function(e) {
-        if (e.target.closest(".remove-btn")) {
-            const item = e.target.closest(".item");
+        const removeBtn = e.target.closest(".remove-btn");
+        const buyNowBtn = e.target.closest(".buy-now-btn");
+
+        if (removeBtn) {
+            const item = removeBtn.closest(".item");
             if (item) {
-                item.remove();
+                let quantity = parseInt(item.getAttribute("data-quantity"), 10);
+                quantity = quantity - 1;
+
+                if (quantity <= 0) {
+                    // Remove the item entirely
+                    item.remove();
+                } else {
+                    // Update quantity attribute
+                    item.setAttribute("data-quantity", quantity);
+                    updateItemDisplay(item);
+                }
+
                 updateTotal();
+            }
+        } else if (buyNowBtn) {
+            const item = buyNowBtn.closest(".item");
+            if (item) {
+                // Redirect with item data in query params
+                const id = item.getAttribute('data-id');
+                const name = encodeURIComponent(item.getAttribute('data-name'));
+                const price = item.getAttribute('data-price');
+                const quantity = item.getAttribute('data-quantity');
+
+                const query = `?id=${id}&name=${name}&price=${price}&quantity=${quantity}`;
+                window.location.href = 'payment.html' + query;
             }
         }
     });
 
-    // Initialize total on page load
     updateTotal();
 });
 </script>
