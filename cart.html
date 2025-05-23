@@ -64,10 +64,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>My Coffee Orders</title>
     <link rel="stylesheet" href="static/css/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <style>
+        /* Just a tiny style tweak for layout */
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .item img {
+            width: 100px;
+            margin-right: 20px;
+        }
+        .item .details {
+            flex-grow: 1;
+        }
+        .item button.remove-btn {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body class="primary-body">
     <header>
@@ -81,34 +103,45 @@
         <div class="container">
             <div class="header">My Cart</div><br>
 
-            <!-- Simulated Cart Item -->
-            <div class="item">
-                <img src="static/media/cappuccino.jpg" alt="Coffee 5" />
-                <div class="details">
-                    <div class="title">Cappuccino</div>
-                    <div class="info">Quantity: 2</div>
-                    <div class="info">Price: ₹ 120</div>
-                    <div class="info">Total: ₹ 240</div>
+            <!-- Cart Items -->
+            <div class="items-list">
+                <div class="item" data-price="240">
+                    <img src="static/media/cappuccino.jpg" alt="Cappuccino" />
+                    <div class="details">
+                        <div class="title">Cappuccino</div>
+                        <div class="info">Quantity: 2</div>
+                        <div class="info">Price: ₹ 120</div>
+                        <div class="info">Total: ₹ 240</div>
+                    </div>
+                    <button class="remove-btn" title="Remove this item"><i class="fas fa-trash-alt"></i> Remove</button>
+                </div>
+
+                <div class="item" data-price="150">
+                    <img src="static/media/espresso.jpg" alt="Espresso" />
+                    <div class="details">
+                        <div class="title">Espresso</div>
+                        <div class="info">Quantity: 1</div>
+                        <div class="info">Price: ₹ 150</div>
+                        <div class="info">Total: ₹ 150</div>
+                    </div>
+                    <button class="remove-btn" title="Remove this item"><i class="fas fa-trash-alt"></i> Remove</button>
                 </div>
             </div>
 
             <div class="summary">
-                <strong id="total-amount">Total : ₹ 240</strong>
+                <strong id="total-amount">Total : ₹ 390</strong>
             </div>
 
             <div class="continue">
                 <button><a style="color: green" href="checkout.html"><i class="fas fa-check-circle"></i> Proceed to Checkout</a></button>
             </div>
 
-            <!-- Updated Remove Button -->
-            <button id="remove-btn" style="color: red"><i class="fas fa-trash-alt"></i> Remove</button>
-
-            <!-- Buy Now Button - simulated -->
+            <!-- Buy Now Button -->
             <form method="POST" onsubmit="alert('Simulated purchase!'); return false;">
                 <button type="submit" style="color: green"><i class="fas fa-credit-card"></i> Buy this now</button>
             </form>
 
-            <!-- Simulated Empty Cart Message -->
+            <!-- Empty Cart Message -->
             <div class="empty-cart" style="margin-top: 20px; display: none;">
                 <p><i class="fas fa-broom"></i> Empty Cart</p>
             </div>
@@ -120,32 +153,52 @@
         <p>&copy; 2024 Coffee Shop. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript to handle remove action -->
-    <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const removeBtn = document.getElementById("remove-btn");
-        const itemDiv = document.querySelector(".item");
-        const emptyCart = document.querySelector(".empty-cart");
-        const summary = document.querySelector(".summary");
-        const checkoutBtn = document.querySelector(".continue");
-        const buyNowForm = document.querySelector("form");
-        const totalAmount = document.getElementById("total-amount");
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const itemsList = document.querySelector(".items-list");
+    const totalAmountEl = document.getElementById("total-amount");
+    const emptyCartMsg = document.querySelector(".empty-cart");
+    const continueBtn = document.querySelector(".continue");
+    const buyNowForm = document.querySelector("form");
 
-        removeBtn.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            if (itemDiv) itemDiv.style.display = "none";
-            if (checkoutBtn) checkoutBtn.style.display = "none";
-            if (buyNowForm) buyNowForm.style.display = "none";
-
-            if (summary && totalAmount) {
-                totalAmount.textContent = "Total : ₹ 0";
-            }
-
-            if (emptyCart) emptyCart.style.display = "block";
+    function updateTotal() {
+        let total = 0;
+        const items = itemsList.querySelectorAll(".item");
+        items.forEach(item => {
+            const price = parseInt(item.getAttribute("data-price"), 10);
+            total += price;
         });
+
+        totalAmountEl.textContent = `Total : ₹ ${total}`;
+
+        if (total === 0) {
+            emptyCartMsg.style.display = "block";
+            continueBtn.style.display = "none";
+            buyNowForm.style.display = "none";
+            totalAmountEl.style.display = "none";
+        } else {
+            emptyCartMsg.style.display = "none";
+            continueBtn.style.display = "block";
+            buyNowForm.style.display = "block";
+            totalAmountEl.style.display = "block";
+        }
+    }
+
+    // Attach remove listeners to each Remove button
+    itemsList.addEventListener("click", function(e) {
+        if (e.target.closest(".remove-btn")) {
+            const item = e.target.closest(".item");
+            if (item) {
+                item.remove();
+                updateTotal();
+            }
+        }
     });
-    </script>
+
+    // Initialize total on page load
+    updateTotal();
+});
+</script>
+
 </body>
 </html>
-
