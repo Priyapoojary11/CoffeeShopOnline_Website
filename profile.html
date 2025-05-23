@@ -35,7 +35,7 @@
         <button class="edit-btn" onclick="editDetails()">Edit Profile</button>
 
         <!-- Form to Edit/Add Details -->
-        <div id="form-section" class="form-field" style="display:inline;">
+        <div id="form-section" class="form-field" style="display:none;">
             <form onsubmit="saveDetails(); return false;">
 
                 <div class="form-group" style="display: inline-block; align-items: center; margin-bottom: 10px;">
@@ -65,7 +65,7 @@
             document.getElementById('address-view').innerText = 'Address: ' + (localStorage.getItem('address') || '#12-4 Sri Devi, Mangalore');
             document.getElementById('mobile-view').innerText = 'Contact Number: ' + (localStorage.getItem('mobile') || '98798746537');
             document.getElementById('email-view').innerText = 'Email: ' + (localStorage.getItem('email') || 'user1@gmail.com');
-            document.getElementById('profile-photo').src = localStorage.getItem('photo') || 'profile_pics\womens.jpg';
+            document.getElementById('profile-photo').src = localStorage.getItem('photo') || 'profile_pics/womens.jpg';
             };
 
         function editDetails() {
@@ -98,7 +98,7 @@
 
         function deletePhoto() {
             localStorage.removeItem('photo');
-            document.getElementById('profile-photo').src = 'profile_pics\womens.jpg';
+            document.getElementById('profile-photo').src = 'profile_pics/womens.jpg';
             alert('Photo Removed!');
         }
 
